@@ -5,10 +5,20 @@ const textarea = document.querySelector('textarea');
 
 const STORAGE_KEY = 'feedback';
 
+const formData = {};
+
 populateTextarea();
 
 form.addEventListener('submit', onFormSabmit);
 textarea.addEventListener('input', throttle(onTextareaInput, 500));
+
+form.addEventListener('input', evt => {
+  //   console.log(evt.target.name);
+  //   console.log(evt.target.value);
+
+  formData[evt.target.name] = evt.target.value;
+  console.log(formData);
+});
 
 function onFormSabmit(event) {
   event.preventDefault();
