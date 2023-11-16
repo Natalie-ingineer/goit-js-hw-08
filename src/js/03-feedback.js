@@ -10,7 +10,7 @@ const formData = {};
 
 populateTextarea();
 
-// form.addEventListener('submit', onFormSabmit);
+form.addEventListener('submit', onFormSabmit);
 // textarea.addEventListener('input', throttle(onTextareaInput, 500));
 form.addEventListener('input', throttle(onTextareaInput, 500));
 
@@ -24,14 +24,14 @@ form.addEventListener('input', evt => {
   console.log(formData);
 });
 
-// function onFormSabmit(event) {
-// event.preventDefault();
+function onFormSabmit(event) {
+  event.preventDefault();
 
-// console.log('Відправили форму!');
+  console.log('Відправили форму!');
 
-// event.target.reset();
-// localStorage.removeItem(STORAGE_KEY);
-// }
+  event.target.reset();
+  localStorage.removeItem(STORAGE_KEY);
+}
 
 function onTextareaInput(event) {
   const strValueInput = JSON.stringify(formData);
@@ -45,7 +45,7 @@ function populateTextarea() {
   console.log(parseMessage);
 
   if (parseMessage) {
-    console.log(parseMessage);
-    form.value = parseMessage;
+    textarea.value = parseMessage.message;
+    inputEmail.value = parseMessage.email;
   }
 }
