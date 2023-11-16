@@ -11,7 +11,6 @@ const formData = {};
 populateTextarea();
 
 form.addEventListener('submit', onFormSabmit);
-// textarea.addEventListener('input', throttle(onTextareaInput, 500));
 form.addEventListener('input', throttle(onTextareaInput, 500));
 
 form.addEventListener('input', evt => {

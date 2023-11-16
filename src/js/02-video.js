@@ -1,17 +1,10 @@
 import throttle from 'lodash.throttle';
 
-import Player from '@vimeo/player';
+import player from '@vimeo/player';
+console.log(player);
 
 const iframe = document.querySelector('iframe');
 console.log(iframe.id);
-
-localStorage.setItem(
-  'videoplayer-current-time',
-  JSON.stringify({ name: 'Mango', age: 22 })
-);
-
-// iframe.getAttribute("id");
-// console.log(iframe("id"));
 
 // const player = new Player('handstick', {
 //   id: iframe.id,
@@ -19,20 +12,22 @@ localStorage.setItem(
 // });
 
 // player.on('play', function () {
-//   console.log('played the video!');
+// console.log('played the video!');
 // });
+// let currentTime =
 
 const onPlay = function (data) {
-  // data is an object containing properties specific to that event
+  {
+    duration: 61.857;
+    percent: 0.049;
+    seconds: 3.034;
+  }
+  const valueInput = data.target.value;
+  console.log(valueInput);
+  localStorage.setItem('videoplayer-current-time', valueInput);
 };
 
 player.on('timeupdate', onPlay);
-
-{
-  duration: 61.857;
-  percent: 0.049;
-  seconds: 3.034;
-}
 
 player
   .setCurrentTime(30.456)
@@ -50,6 +45,31 @@ player
         break;
     }
   });
+
+// function onTextareaInput(event) {
+//   const valueInput = event.target.value;
+//   console.log(valueInput);
+//   localStorage.setItem(STORAGE_KEY, valueInput);
+// }
+
+// localStorage.setItem('videoplayer-current-time', target.value);
+
+// const player = new Player('handstick', {
+// id: iframe.id,
+// width: 640,
+// });
+
+// player.on('play', function () {
+// console.log('played the video!');
+// });
+
+// localStorage.setItem(
+// 'videoplayer-current-time',
+// JSON.stringify({ name: 'Mango', age: 22 })
+// );
+
+// iframe.getAttribute("id");
+// console.log(iframe("id"));
 
 // const form = document.querySelector('.feedback-form');
 // const textarea = document.querySelector('textarea');
