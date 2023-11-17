@@ -1,20 +1,15 @@
-import throttle from 'lodash.throttle';
+// import throttle from 'lodash.throttle';
 
-import player from '@vimeo/player';
-console.log(player);
+import Player from '@vimeo/player';
+console.log(Player);
 
-const iframe = document.querySelector('iframe');
-console.log(iframe.id);
+const iframeVideo = document.querySelector('iframe');
+console.dir(iframeVideo);
 
-// const player = new Player('handstick', {
-//   id: iframe.id,
-//   width: 640,
-// });
-
-// player.on('play', function () {
-// console.log('played the video!');
-// });
-// let currentTime =
+const player = new Player('vimeo-player', {
+  id: 236203659,
+  width: 640,
+});
 
 const onPlay = function (data) {
   {
@@ -22,10 +17,13 @@ const onPlay = function (data) {
     percent: 0.049;
     seconds: 3.034;
   }
-  const valueInput = data.target.value;
-  console.log(valueInput);
-  localStorage.setItem('videoplayer-current-time', valueInput);
 };
+
+const valueInput = iframeVideo.setCurrentTime;
+console.log(valueInput);
+localStorage.setItem('videoplayer-current-time', JSON.stringify(valueInput));
+
+iframeVideo.addEventListener('timeupdate', onPlay);
 
 player.on('timeupdate', onPlay);
 
@@ -104,3 +102,13 @@ player
 //     textarea.value = savedMessage;
 //   }
 // }
+
+// const player = new Player('handstick', {
+//   id: iframe.id,
+//   width: 640,
+// });
+
+// player.on('play', function () {
+// console.log('played the video!');
+// });
+// let currentTime =
