@@ -13,19 +13,14 @@ const player = new Player('vimeo-player', {
 });
 
 const onPlay = function (data) {
-  {
-    duration: 61.857;
-    percent: 0.049;
-    seconds: 3.034;
-  }
   const valueInput = data.seconds;
   console.log(valueInput);
   localStorage.setItem('videoplayer-current-time', JSON.stringify(valueInput));
 };
 
-iframeVideo.addEventListener('timeupdate', throttle(onPlay, 1000));
+iframeVideo.addEventListener('timeupdate', onPlay, 1000);
 
-player.on('timeupdate', onPlay);
+player.on('timeupdate', throttle(onPlay, 1000));
 
 player
   .setCurrentTime(localStorage.getItem('videoplayer-current-time'))
