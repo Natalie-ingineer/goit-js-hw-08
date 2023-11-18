@@ -14,23 +14,9 @@ form.addEventListener('submit', onFormSabmit);
 form.addEventListener('input', throttle(onTextareaInput, 500));
 
 form.addEventListener('input', evt => {
-  //   console.log(evt.target.name); - ім'я інпуту (email,message)
-  //   console.log(evt.target.value);
-
-  // для того щоб вивести об'єкт з назвою (ключем) та значенням
-
   formData[evt.target.name] = evt.target.value;
   console.log(formData);
 });
-
-function onFormSabmit(event) {
-  event.preventDefault();
-
-  console.log('Відправили форму!');
-
-  event.target.reset();
-  localStorage.removeItem(STORAGE_KEY);
-}
 
 function onTextareaInput(event) {
   const strValueInput = JSON.stringify(formData);
@@ -41,10 +27,27 @@ function onTextareaInput(event) {
 function populateTextarea() {
   const savedMessage = localStorage.getItem(STORAGE_KEY);
   const parseMessage = JSON.parse(savedMessage);
-  console.log(parseMessage);
 
   if (parseMessage) {
     textarea.value = parseMessage.message;
     inputEmail.value = parseMessage.email;
   }
+}
+
+function onFormSabmit(event) {
+  event.preventDefault();
+  const emailData = event.target.elements.email.value;
+  const messageData = event.target.elements.message.value;
+
+  if (emailData === '' || messageData === '') {
+    return alert(`Помилка! Всі поля повинні бути заповнені!`);
+  }
+  const data = {
+    Email: emailData,
+    Message: messageData,
+  };
+  console.log(data);
+
+  event.target.reset();
+  localStorage.removeItem(STORAGE_KEY);
 }
