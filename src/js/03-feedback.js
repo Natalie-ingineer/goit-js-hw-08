@@ -15,12 +15,10 @@ form.addEventListener('input', throttle(onTextareaInput, 500));
 
 form.addEventListener('input', evt => {
   formData[evt.target.name] = evt.target.value;
-  console.log(formData);
 });
 
 function onTextareaInput(event) {
   const strValueInput = JSON.stringify(formData);
-  console.log(strValueInput);
   localStorage.setItem(STORAGE_KEY, strValueInput);
 }
 
